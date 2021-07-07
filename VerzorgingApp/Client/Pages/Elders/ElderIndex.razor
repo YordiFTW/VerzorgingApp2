@@ -1,0 +1,57 @@
+﻿@page "/Elders/ElderIndex"
+@using VerzorgingApp.Shared
+@inherits ElderIndexBase
+
+<h1 class="page-title">All Elders</h1>
+
+<td>
+    <a href="@($"Elders/ElderAdd/")" class="btn btn-primary table-btn">
+        @*<i class="fas fa-info-circle"></i>*@
+        Client aanmaken
+    </a>
+</td>
+
+
+@if (Elders == null)
+{
+    <p><em>Loading...</em></p>}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Date of Birth</th>
+                <th>CaretakerId</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var elder in Elders.Cast<Elder>())
+            {
+            <tr>
+                <td>@elder.Id</td>
+                <td>@elder.FirstName</td>
+                <td>@elder.LastName</td>
+                <td>@elder.DateofBirth</td>
+                <td>@elder.CaretakerId</td>
+                <td>
+                    <a href="@($"Elders/ElderDetail/{elder.Id}")" class="btn btn-primary table-btn">
+                        @*<i class="fas fa-info-circle"></i>*@
+                        Details
+                    </a>
+                    <a href="@($"Elders/ElderEdit/{elder.Id}")" class="btn btn-primary table-btn">
+                        @*<i class="fas fa-edit"></i>*@
+                        Aanpassen
+                    </a>
+                    <a href="@($"Elders/ElderDelete/{elder.Id}")" class="btn btn-danger table-btn">
+                        @*<i class="fas fa-edit"></i>*@
+                        Verwijderen
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>}

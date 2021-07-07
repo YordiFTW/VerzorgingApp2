@@ -1,0 +1,109 @@
+﻿@page "/Caretakers/CaretakerAdd"
+@page "/Caretakers/CaretakerAdd/{Id}"
+@using VerzorgingApp.Shared
+@inherits CaretakerAddBase
+
+<section class="Appointment-add">
+    @if (!Saved)
+    {
+        <h1 class="page-title">Nieuwe afspraak maken</h1>
+        <EditForm Model="@Caretaker" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="FirstName">FirstName: </label>
+                <InputText id="FirstName" class="form-control" @bind-Value="@Caretaker.FirstName" placeholder="FirstName"></InputText>
+                <ValidationMessage For="@(() => Caretaker.FirstName)" />
+            </div>
+
+            <div class="form-group">
+                <label for="LastName">LastName: </label>
+                <InputText id="LastName" class="form-control" @bind-Value="@Caretaker.LastName" placeholder="LastName"></InputText>
+                <ValidationMessage For="@(() => Caretaker.LastName)" />
+            </div>
+
+            <div class="form-group">
+                <label for="DateofBirth">DateofBirth: </label>
+                <InputDate id="DateofBirth" class="form-control" @bind-Value="@Caretaker.DateofBirth" placeholder="DateofBirth"></InputDate>
+                <ValidationMessage For="@(() => Caretaker.DateofBirth)" />
+            </div>
+
+            @*<div class="form-group row">
+            <label for="Catagory" class="col-sm-3">Elder: </label>
+            <InputSelect id="Catagory" class="form-control col-sm-8" @bind-Value=@Caretaker.Elder>
+                @foreach (var elder in Elders)
+                    {
+                <option value="@elder.Id">@elder.FirstName</option>
+                    }
+            </InputSelect>
+        </div>*@
+
+            @*<div class="form-group">
+            <label for="title">Invite User: </label>
+            <InputText id="title" class="form-control" @bind-Value="@Plan.InviteUser" placeholder="Invite User"></InputText>
+            <ValidationMessage For="@(() => Plan.InviteUser.)" />
+        </div>*@
+            @*<RadzenButton ButtonType="Radzen.ButtonType.Button" Text="Add"
+        ButtonStyle="Radzen.ButtonStyle.Primary" class="btn-block mr-2" Click="AddInviteUser" />*@
+
+            @*<div class="form-group row">
+            <label class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+                @foreach (string user in invitedUsers)
+                {
+                <label type="text" class="form-control-plaintext">@user</label>
+                }
+            </div>
+        </div>*@
+
+
+
+            @*<div class="form-group">
+            <label for="Invite">Invite User: </label>
+            <InputText id="Invite" class="form-control" @bind-Value="@Plan.InviteUser" placeholder="InvitedUsers"></InputText>
+            <ValidationMessage For="@(() => Plan.InviteUser)" />
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Invited Users</label>
+            <div class="col-sm-8">
+                <label type="text" class="form-control-plaintext">@Plan.InviteUser</label>
+            </div>
+        </div>*@
+
+            @*<div class="form-group row">
+            <label for="PlanCatagoryEnum" class="col-sm-3">Voorkeur contactvorm: </label>
+            <InputSelect id="PlanCatagoryEnum" class="form-control col-sm-8" @bind-Value=@Plan.Catagory>
+                <option value="@(PlanCatagoryEnum.Event1)">@PlanCatagoryEnum.Event1</option>
+                <option value="@(PlanCatagoryEnum.Event2)">@PlanCatagoryEnum.Event2</option>
+                <option value="@(PlanCatagoryEnum.Event3)">@PlanCatagoryEnum.Event3</option>
+            </InputSelect>
+        </div>*@
+
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+        </EditForm> }
+    else
+    {
+        <div class="alert @StatusClass">@Message</div>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Terug naar overzicht</a>}
+</section>
+
+
+@code {
+
+    //List<string> InvitedUsers = new List<string>();
+
+
+    public void AddInviteUser()
+    {
+
+        //if (!invitedUsers.Contains(Plan.InviteUser))
+        //{
+        //    invitedUsers.Add(Plan.InviteUser);
+        //}
+
+
+    }
+}

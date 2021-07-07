@@ -1,0 +1,51 @@
+﻿@page "/Elders/Elderdetail/{Id}"
+@using VerzorgingApp.Shared
+@inherits ElderDetailBase
+
+<h1 class="page-title">Details for "@Elder.FirstName  "</h1>
+
+<div class="col-12 row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-10 row">
+        <div class="col-xs-12 col-sm-8">
+
+            <h2>Afspraak</h2>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Plan Id</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Elder.Id</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">FirstName</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Elder.FirstName</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">LastName</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Elder.LastName</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Date of Birth</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Elder.DateofBirth</label>
+                </div>
+            </div>
+            @*<div class="form-group row">
+                <label class="col-sm-4 col-form-label">PlanType</label>
+                <div class="col-sm-8">
+                    <label type="text" class="form-control-plaintext">@Plan.Catagory</label>
+                </div>
+            </div>*@
+
+            <a class="btn btn-outline-primary" @onclick="@NavigateToOverView">Back to overview</a>
+            <p></p>
+        </div>
+    </div>
+</div>

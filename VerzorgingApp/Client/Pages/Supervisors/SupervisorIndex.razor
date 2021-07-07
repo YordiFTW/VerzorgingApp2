@@ -1,0 +1,57 @@
+﻿@page "/Supervisors/SupervisorIndex"
+@using VerzorgingApp.Shared
+@inherits SupervisorIndexBase
+
+<h1 class="page-title">All Supervisors</h1>
+
+<td>
+    <a href="@($"Supervisors/SupervisorAdd/")" class="btn btn-primary table-btn">
+        @*<i class="fas fa-info-circle"></i>*@
+        Client aanmaken
+    </a>
+</td>
+
+
+@if (Supervisors == null)
+{
+    <p><em>Loading...</em></p>}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Date of Birth</th>
+                <th>CaretakerId</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var supervisor in Supervisors.OfType<Supervisor>())
+            {
+            <tr>
+                <td>@supervisor.Id</td>
+                <td>@supervisor.FirstName</td>
+                <td>@supervisor.LastName</td>
+                <td>@supervisor.DateofBirth</td>
+                @*<td>@supervisor.CaretakerId</td>*@
+                <td>
+                    <a href="@($"Supervisors/SupervisorDetail/{supervisor.Id}")" class="btn btn-primary table-btn">
+                        @*<i class="fas fa-info-circle"></i>*@
+                        Details
+                    </a>
+                    <a href="@($"Supervisors/SupervisorEdit/{supervisor.Id}")" class="btn btn-primary table-btn">
+                        @*<i class="fas fa-edit"></i>*@
+                        Aanpassen
+                    </a>
+                    <a href="@($"Supervisors/SupervisorDelete/{supervisor.Id}")" class="btn btn-danger table-btn">
+                        @*<i class="fas fa-edit"></i>*@
+                        Verwijderen
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>}

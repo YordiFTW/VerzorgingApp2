@@ -1,0 +1,77 @@
+﻿@page "/Supervisors/SupervisorEdit"
+@page "/Supervisors/SupervisorEdit/{Id}"
+
+@inherits SupervisorEditBase
+
+<section class="Plan-edit">
+    @if (!Saved)
+    {
+        <h1 class="page-title">Details for @Supervisor.FirstName</h1>
+        <EditForm Model="@Supervisor.FirstName" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="title">Titel: </label>
+                <InputText id="title" class="form-control" @bind-Value="@Supervisor.FirstName" placeholder="Titel"></InputText>
+                <ValidationMessage For="@(() => Supervisor.FirstName)" />
+            </div>
+
+            <div class="form-group">
+                <label for="details">Details: </label>
+                <InputText id="details" class="form-control" @bind-Value="@Supervisor.LastName" placeholder="Details"></InputText>
+                <ValidationMessage For="@(() => Supervisor.LastName)" />
+            </div>
+
+            <div class="form-group">
+                <label for="StartDate">Datum: </label>
+                <InputDate id="StartDate" class="form-control" @bind-Value="@Supervisor.DateofBirth" placeholder="Startdatum"></InputDate>
+                <ValidationMessage For="@(() => Supervisor.DateofBirth)" />
+            </div>
+
+
+            @*<div class="form-group">
+                    <label for="DateAdded">Aanmaakdatum: </label>
+                    <InputDate id="DateAdded" class="form-control" @bind-Value="@Plan.DateAdded" placeholder="Aanmaakdatum"></InputDate>
+                    <ValidationMessage For="@(() => Plan.DateAdded)" />
+                </div>*@
+
+        @*<div class="form-group row">
+            <label for="Catagory" class="col-sm-3">Voorkeur contactvorm: </label>
+            <InputSelect id="Catagory" class="form-control col-sm-8" @bind-Value=@Plan.Catagory>
+                <option value="@(PlanCatagoryEnum.Event1)">@PlanCatagoryEnum.Event1</option>
+                <option value="@(PlanCatagoryEnum.Event2)">@PlanCatagoryEnum.Event2</option>
+                <option value="@(PlanCatagoryEnum.Event3)">@PlanCatagoryEnum.Event3</option>
+                
+            </InputSelect>
+        </div>*@
+
+            @*<div class="form-group">
+                    <label for="Bestanden">Document: </label>
+
+                    <InputFile OnChange="HandleFileSelected" />
+
+                    @if (File != null)
+                    {
+                        <p>Name: @File.Name</p>
+                        <p>Size in bytes: @File.Size</p>
+                        <p>Last modified date: @File.LastModified.ToShortDateString()</p>
+                    }
+
+                    <ValidationMessage For="@(() => Plan.Upload)" />
+                </div>*@
+
+
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+
+        </EditForm>
+
+
+    }
+    else
+    {
+        <div class="alert @StatusClass">@Message</div>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Back to overview</a>
+    }
+</section>
