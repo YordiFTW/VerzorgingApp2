@@ -9,7 +9,7 @@ namespace VerzorgingApp.Shared
    public class Caretaker : Person
     {
 
-        //public ICollection<Supervisor> Supervisor { get; set; }
+        
         public ICollection<Elder> Elders { get; set; }
     }
 }

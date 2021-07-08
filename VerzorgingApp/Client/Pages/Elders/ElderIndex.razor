@@ -31,27 +31,33 @@ else
         <tbody>
             @foreach (var elder in Elders.Cast<Elder>())
             {
-            <tr>
-                <td>@elder.Id</td>
-                <td>@elder.FirstName</td>
-                <td>@elder.LastName</td>
-                <td>@elder.DateofBirth</td>
-                <td>@elder.CaretakerId</td>
-                <td>
-                    <a href="@($"Elders/ElderDetail/{elder.Id}")" class="btn btn-primary table-btn">
-                        @*<i class="fas fa-info-circle"></i>*@
-                        Details
-                    </a>
-                    <a href="@($"Elders/ElderEdit/{elder.Id}")" class="btn btn-primary table-btn">
-                        @*<i class="fas fa-edit"></i>*@
-                        Aanpassen
-                    </a>
-                    <a href="@($"Elders/ElderDelete/{elder.Id}")" class="btn btn-danger table-btn">
-                        @*<i class="fas fa-edit"></i>*@
-                        Verwijderen
-                    </a>
-                </td>
-            </tr>
-            }
-        </tbody>
+                <tr>
+                 <td>@elder.Id</td>
+                    <td>@elder.FirstName</td>
+                    <td>@elder.LastName</td>
+                    <td>@elder.DateofBirth</td>
+                    <td>@elder.CaretakerId</td>
+                    
+
+
+
+
+
+            <td>
+                <a href="@($"Elders/ElderDetail/{elder.Id}")" class="btn btn-primary table-btn">
+                    @*<i class="fas fa-info-circle"></i>*@
+                    Details
+                </a>
+                <a href="@($"Elders/ElderEdit/{elder.Id}")" class="btn btn-primary table-btn">
+                    @*<i class="fas fa-edit"></i>*@
+                    Aanpassen
+                </a>
+                <a href="@($"Elders/ElderDelete/{elder.Id}")" class="btn btn-danger table-btn">
+                    @*<i class="fas fa-edit"></i>*@
+                    Verwijderen
+                </a>
+            </td>
+        </tr>}
+            
+                        </tbody>
     </table>}

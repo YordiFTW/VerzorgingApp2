@@ -39,6 +39,11 @@ namespace VerzorgingApp.Client
                 client.BaseAddress = new Uri("https://localhost:44327");
             });
 
+            builder.Services.AddHttpClient<IAppointmentDataService, AppointmentDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44327");
+            });
+
             builder.Services.AddApiAuthorization();
 
             await builder.Build().RunAsync();

@@ -1,0 +1,21 @@
+﻿@page "/Calendar/Scheduler"
+@using Syncfusion.Blazor.Schedule
+@using VerzorgingApp.Shared 
+@inherits SchedulerBase;
+<div class="col-lg-12 control-section">
+    <div class="schedule-wrapper">
+        <SfSchedule TValue="Appointment" Width="100%" Height="650px" @bind-SelectedDate="@CurrentDate">
+            <ScheduleEventSettings DataSource="@Appointments"></ScheduleEventSettings>
+            <ScheduleViews>
+                <ScheduleView Option="View.Day"></ScheduleView>
+                <ScheduleView Option="View.Week"></ScheduleView>
+                <ScheduleView Option="View.WorkWeek"></ScheduleView>
+                <ScheduleView Option="View.Month"></ScheduleView>
+                <ScheduleView Option="View.Agenda"></ScheduleView>
+            </ScheduleViews>
+        </SfSchedule>
+    </div>
+</div>
+@code{
+    
+}

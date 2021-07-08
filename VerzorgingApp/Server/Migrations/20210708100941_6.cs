@@ -2,7 +2,7 @@
 
 namespace VerzorgingApp.Server.Migrations
 {
-    public partial class _4 : Migration
+    public partial class _6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

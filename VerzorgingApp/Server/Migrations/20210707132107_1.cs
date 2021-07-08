@@ -88,22 +88,14 @@ namespace VerzorgingApp.Server.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateofBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ElderId = table.Column<int>(type: "int", nullable: true),
-                    CaretakerId = table.Column<int>(type: "int", nullable: true),
-                    CaretakerId1 = table.Column<int>(type: "int", nullable: true)
+                    CaretakerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_People", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_People_People_CaretakerId1",
-                        column: x => x.CaretakerId1,
-                        principalTable: "People",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_People_People_ElderId",
-                        column: x => x.ElderId,
+                        name: "FK_People_People_CaretakerId",
+                        column: x => x.CaretakerId,
                         principalTable: "People",
                         principalColumn: "Id");
                 });
@@ -311,16 +303,9 @@ namespace VerzorgingApp.Server.Migrations
                 column: "ElderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_People_CaretakerId1",
+                name: "IX_People_CaretakerId",
                 table: "People",
-                column: "CaretakerId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_People_ElderId",
-                table: "People",
-                column: "ElderId",
-                unique: true,
-                filter: "[ElderId] IS NOT NULL");
+                column: "CaretakerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerzorgingApp.Server", "VerzorgingApp\Server\VerzorgingApp.Server.csproj", "{F8F4389D-7B9C-471D-85A1-8C1BA6E6E21F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerzorgingApp.Server", "VerzorgingApp\Server\VerzorgingApp.Server.csproj", "{F8F4389D-7B9C-471D-85A1-8C1BA6E6E21F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerzorgingApp.Client", "VerzorgingApp\Client\VerzorgingApp.Client.csproj", "{134A8836-19C5-4BA3-843C-1C6385E9D703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerzorgingApp.Client", "VerzorgingApp\Client\VerzorgingApp.Client.csproj", "{134A8836-19C5-4BA3-843C-1C6385E9D703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerzorgingApp.Shared", "VerzorgingApp\Shared\VerzorgingApp.Shared.csproj", "{3B0268E0-97BA-4010-A3DF-F11FFFB38171}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerzorgingApp.Shared", "VerzorgingApp\Shared\VerzorgingApp.Shared.csproj", "{3B0268E0-97BA-4010-A3DF-F11FFFB38171}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

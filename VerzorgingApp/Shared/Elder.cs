@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace VerzorgingApp.Shared
     {
         public List<Medicine> Medicines { get; set; }
 
-        [ForeignKey("Person")]
+        //[ForeignKey("Person")]
+        [Required]
         public int CaretakerId { get; set; }
 
         public Caretaker Caretaker { get; set; }

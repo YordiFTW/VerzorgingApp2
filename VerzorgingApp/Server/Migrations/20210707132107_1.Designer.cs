@@ -10,7 +10,7 @@ using VerzorgingApp.Server.Data;
 namespace VerzorgingApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210707100031_1")]
+    [Migration("20210707132107_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -393,13 +393,6 @@ namespace VerzorgingApp.Server.Migrations
                 {
                     b.HasBaseType("VerzorgingApp.Shared.Person");
 
-                    b.Property<int?>("ElderId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("ElderId")
-                        .IsUnique()
-                        .HasFilter("[ElderId] IS NOT NULL");
-
                     b.HasDiscriminator().HasValue("Caretaker");
                 });
 
@@ -410,10 +403,7 @@ namespace VerzorgingApp.Server.Migrations
                     b.Property<int>("CaretakerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CaretakerId1")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CaretakerId1");
+                    b.HasIndex("CaretakerId");
 
                     b.HasDiscriminator().HasValue("Elder");
                 });
@@ -483,19 +473,15 @@ namespace VerzorgingApp.Server.Migrations
                         .HasForeignKey("ElderId");
                 });
 
-            modelBuilder.Entity("VerzorgingApp.Shared.Caretaker", b =>
-                {
-                    b.HasOne("VerzorgingApp.Shared.Elder", null)
-                        .WithOne("Caretaker")
-                        .HasForeignKey("VerzorgingApp.Shared.Caretaker", "ElderId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                });
-
             modelBuilder.Entity("VerzorgingApp.Shared.Elder", b =>
                 {
-                    b.HasOne("VerzorgingApp.Shared.Caretaker", null)
+                    b.HasOne("VerzorgingApp.Shared.Caretaker", "Caretaker")
                         .WithMany("Elders")
-                        .HasForeignKey("CaretakerId1");
+                        .HasForeignKey("CaretakerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Caretaker");
                 });
 
             modelBuilder.Entity("VerzorgingApp.Shared.Caretaker", b =>
@@ -505,8 +491,6 @@ namespace VerzorgingApp.Server.Migrations
 
             modelBuilder.Entity("VerzorgingApp.Shared.Elder", b =>
                 {
-                    b.Navigation("Caretaker");
-
                     b.Navigation("Medicines");
                 });
 #pragma warning restore 612, 618

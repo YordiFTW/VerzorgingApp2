@@ -21,6 +21,7 @@ namespace VerzorgingApp.Server.Data
 
         public DbSet<Elder> Elders { get; set; }
         public DbSet<Supervisor> Supervisors { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Caretaker> Caretakers { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Medicine> Medcines { get; set; }
@@ -29,14 +30,23 @@ namespace VerzorgingApp.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Elder>()
-                .HasOne(m => m.Caretaker)
-                .WithOne()
-                .HasForeignKey<Caretaker>()
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Caretaker>()
+                .HasMany(g => g.Elders)
+                .WithOne(s => s.Caretaker)
+                .HasForeignKey(s => s.CaretakerId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-
+            modelBuilder.Entity<Appointment>().HasData(
+            new {
+                Id = 1,
+                Subject = "Explosion of Betelgeuse Star",
+                Location = "Space Centre USA",
+                StartTime = new DateTime(2020, 1, 5, 9, 30, 0),
+                EndTime = new DateTime(2020, 1, 5, 11, 0, 0),
+                CategoryColor = "#1aaa55"
+            });
         }
     }
 

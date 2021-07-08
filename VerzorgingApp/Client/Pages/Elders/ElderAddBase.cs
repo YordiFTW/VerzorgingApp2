@@ -28,6 +28,7 @@ namespace VerzorgingApp.Client.Pages.Elders
         [Parameter]
         public int Id { get; set; }
 
+
         protected string Message = string.Empty;
         protected string StatusClass = string.Empty;
         protected bool Saved;
@@ -35,7 +36,11 @@ namespace VerzorgingApp.Client.Pages.Elders
 
         protected override async Task OnInitializedAsync()
         {
+
             Caretakers = (await CaretakerDataService.GetAllCaretakers()).ToList();
+
+            
+
             Saved = false;
             Elder = new Elder
             {

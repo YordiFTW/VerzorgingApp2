@@ -13,16 +13,21 @@ namespace VerzorgingApp.Client.Pages.Elders
         [Parameter]
         public string Id { get; set; }
         public Elder Elder { get; set; } = new Elder();
+        public Caretaker Caretaker { get; set; } = new Caretaker();
 
         public IEnumerable<Elder> Elders { get; set; }
         [Inject]
         public IElderDataService ElderDataService { get; set; }
         [Inject]
+        public ICaretakerDataService CaretakerDataService { get; set; }
+        [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+
             Elder = await ElderDataService.GetElderDetails(int.Parse(Id));
+
 
         }
 

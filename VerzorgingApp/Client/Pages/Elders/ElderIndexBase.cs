@@ -14,9 +14,17 @@ namespace VerzorgingApp.Client.Pages.Elders
         public IElderDataService ElderDataService { get; set; }
         public List<Elder> Elders { get; set; }
 
+        [Inject]
+        public ICaretakerDataService CaretakerDataService { get; set; }
+        public List<Caretaker> Caretakers { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
+
+
             Elders = (await ElderDataService.GetAllElders()).ToList();
+
+            Caretakers = (await CaretakerDataService.GetAllCaretakers()).ToList();
 
         }
     }

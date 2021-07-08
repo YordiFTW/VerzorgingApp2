@@ -10,8 +10,8 @@ using VerzorgingApp.Server.Data;
 namespace VerzorgingApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210707101218_4")]
-    partial class _4
+    [Migration("20210708100941_6")]
+    partial class _6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -339,6 +339,40 @@ namespace VerzorgingApp.Server.Migrations
                     b.ToTable("Activities");
                 });
 
+            modelBuilder.Entity("VerzorgingApp.Shared.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryColor = "#1aaa55",
+                            EndTime = new DateTime(2020, 1, 5, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2020, 1, 5, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            Subject = "Explosion of Betelgeuse Star"
+                        });
+                });
+
             modelBuilder.Entity("VerzorgingApp.Shared.Medicine", b =>
                 {
                     b.Property<int>("Id")
@@ -393,13 +427,6 @@ namespace VerzorgingApp.Server.Migrations
                 {
                     b.HasBaseType("VerzorgingApp.Shared.Person");
 
-                    b.Property<int?>("ElderId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("ElderId")
-                        .IsUnique()
-                        .HasFilter("[ElderId] IS NOT NULL");
-
                     b.HasDiscriminator().HasValue("Caretaker");
                 });
 
@@ -410,10 +437,7 @@ namespace VerzorgingApp.Server.Migrations
                     b.Property<int>("CaretakerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CaretakerId1")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CaretakerId1");
+                    b.HasIndex("CaretakerId");
 
                     b.HasDiscriminator().HasValue("Elder");
                 });
@@ -483,19 +507,15 @@ namespace VerzorgingApp.Server.Migrations
                         .HasForeignKey("ElderId");
                 });
 
-            modelBuilder.Entity("VerzorgingApp.Shared.Caretaker", b =>
-                {
-                    b.HasOne("VerzorgingApp.Shared.Elder", null)
-                        .WithOne("Caretaker")
-                        .HasForeignKey("VerzorgingApp.Shared.Caretaker", "ElderId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                });
-
             modelBuilder.Entity("VerzorgingApp.Shared.Elder", b =>
                 {
-                    b.HasOne("VerzorgingApp.Shared.Caretaker", null)
+                    b.HasOne("VerzorgingApp.Shared.Caretaker", "Caretaker")
                         .WithMany("Elders")
-                        .HasForeignKey("CaretakerId1");
+                        .HasForeignKey("CaretakerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Caretaker");
                 });
 
             modelBuilder.Entity("VerzorgingApp.Shared.Caretaker", b =>
@@ -505,8 +525,6 @@ namespace VerzorgingApp.Server.Migrations
 
             modelBuilder.Entity("VerzorgingApp.Shared.Elder", b =>
                 {
-                    b.Navigation("Caretaker");
-
                     b.Navigation("Medicines");
                 });
 #pragma warning restore 612, 618
